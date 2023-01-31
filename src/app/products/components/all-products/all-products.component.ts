@@ -9,6 +9,8 @@ import {ProductsService} from "../../services/products.service";
 export class AllProductsComponent implements  OnInit {
   products: any[] = [];
   categories: any[] = [];
+  loading: boolean = false;
+  cartProducts: any[] = []
 
   constructor(private service: ProductsService) {
   }
@@ -21,35 +23,74 @@ export class AllProductsComponent implements  OnInit {
 
 
   getProducts() {
+    this.loading = true;
     this.service.getAllProducts().subscribe((res: any) => {
         this.products = res;
+        this.loading = false;
       }, error => {
         alert("error in link");
         console.log(error.message);
+        this.loading = false;
       }
     )
   }
 
   getCategories() {
+    this.loading = true;
     this.service.getAllCategories().subscribe((res: any) => {
         this.categories = res;
-        console.log(res);
+        this.loading = false;
       }, error => {
         alert("error in link");
         console.log(error.message);
+        this.loading = false;
       }
     )
   }
 
   filterCategory(event: any) {
+    this.loading = true;
     let value = event.target.value;
-    if (value == 'all') {
-      console.log(value);
-      this.getProducts()
-    } else {
+    (value === 'all') ? this.getProducts() :
       this.service.getProductByCategory(value).subscribe((res: any) => {
         this.products = res;
+        this.loading = false;
       })
+  }
+
+
+  //
+  // addToCart(event:any) {
+  //   if("cart" in localStorage) {
+  //     this.cartProducts=JSON.parse(localStorage.getItem("cart")!);
+  //     let exist =this.cartProducts.find(item => item.id ==event.id)
+  //     if(exist) {
+  //       alert("product already in your cart");
+  //     }else {
+  //     this.cartProducts.push(event);
+  //     localStorage.setItem("cart",JSON.stringify(this.cartProducts ))
+  //     }
+  //   }else{
+  //     this.cartProducts.push(event);
+  //     localStorage.setItem("cart",JSON.stringify(this.cartProducts ))
+  //
+  //   }
+  // }
+  addToCart(event: any) {
+    if ("cart" in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem("cart")!);
+          let exist =this.cartProducts.find(item => item.id ==event.id)
+          if(exist) {
+            alert("product already in your cart");
+          }else {
+          this.cartProducts.push(event);
+          localStorage.setItem("cart",JSON.stringify(this.cartProducts ))
+          }
+    } else {
+      this.cartProducts.push(event);
+      localStorage.setItem("cart", JSON.stringify(this.cartProducts))
+
     }
+
   }
 }
