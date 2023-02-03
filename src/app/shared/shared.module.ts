@@ -6,7 +6,6 @@ import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectComponent } from './components/select/select.component';
-import { SelectclcComponent } from './components/selectclc/selectclc.component';
 
 
 
@@ -15,7 +14,6 @@ import { SelectclcComponent } from './components/selectclc/selectclc.component';
     HeaderComponent,
     SpinnerComponent,
     SelectComponent,
-    SelectclcComponent
   ],
   imports: [
     CommonModule,
