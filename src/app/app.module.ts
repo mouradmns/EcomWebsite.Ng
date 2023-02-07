@@ -7,7 +7,8 @@ import {SharedModule} from "./shared/shared.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ProductsModule} from "./products/products.module";
 import { CartsModule } from './carts/carts.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card'
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +17,9 @@ import { CartsModule } from './carts/carts.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

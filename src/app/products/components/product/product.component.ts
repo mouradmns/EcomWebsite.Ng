@@ -8,10 +8,12 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class ProductComponent implements OnInit{
     @Input() data:any={}
     @Output() item = new EventEmitter();
+    addProduct:boolean = false;
+    amount: number = 0;
   ngOnInit(): void {
   }
 
   add() {
-      this.item.emit(this.data);
+      this.item.emit({item:this.data,quantity:this.amount});
   }
 }

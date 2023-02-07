@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartComponent } from './components/cart/cart.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatLegacyButtonModule} from "@angular/material/legacy-button";
 
 
 
@@ -9,7 +11,9 @@ import { CartComponent } from './components/cart/cart.component';
     CartComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatLegacyButtonModule
   ]
 })
 export class CartsModule { }
